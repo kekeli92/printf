@@ -17,7 +17,7 @@ int print_char(va_list types, char buffer[],
 
 	return (handle_write_char(c, buffer, flags, width, precision, size));
 }
-/********** PRINT  STRING ************/
+
 /**
  * print_string - program that prints a string
  * @types: List of arguments
@@ -31,7 +31,7 @@ int print_char(va_list types, char buffer[],
 int print_string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int length = 0, j;
+	int length = 0, i;
 	char *str = va_arg(types, char *);
 
 	UNUSED(buffer);
@@ -54,13 +54,13 @@ int print_string(va_list types, char buffer[],
 		if (flags & F_MINUS)
 		{
 			write(1, &str[0], length);
-			for (j = width - length; j > 0; j--)
+			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			return (width);
 		}
 		else
 		{
-			for (j = width - length; j > 0; j--)
+			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			write(1, &str[0], length);
 			return (width);
@@ -68,7 +68,7 @@ int print_string(va_list types, char buffer[],
 	}
 	return (write(1, str, length));
 }
-/********PRINT PERCENT SIGN ********/
+
 /**
  * print_percent - program that prints a percent sign
  * @types: Lista of arguments
@@ -90,7 +90,7 @@ int print_percent(va_list types, char buffer[],
 	UNUSED(size);
 	return (write(1, "%%", 1));
 }
-/************ PRINT INTEGER ***************/
+
 /**
  * print_int - program that prints an integer
  * @types: List of arguments
@@ -129,7 +129,7 @@ int print_int(va_list types, char buffer[],
 	i++;
 	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
-/********* PRINTS BINARY **********/
+
 /**
  * print_binary - program that prints an unsigned number
  * @types: List of arguments
